@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gradient_animation_text/flutter_gradient_animation_text.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:workout_planner/Pages/equipments_page.dart';
@@ -54,17 +55,21 @@ class _HomePageState extends State<HomePage> {
                     Colors.lightBlue,
                   ],
                 ),
-                GradientText(
-                  "Hello ,${userData.fullName}",
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
+                GradientAnimationText(
+                  text: Text(
+                    "Hello ,${userData.fullName}",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
-                  colors: const [
-                    Colors.red,
+                  colors: [
+                    Colors.blue,
                     Colors.green,
-                    Colors.amber,
+                    Colors.yellow,
+                    Colors.red,
                   ],
+                  duration: Duration(seconds: 10),
                 ),
                 const SizedBox(height: 20),
                 const ProgressCard(
