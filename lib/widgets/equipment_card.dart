@@ -23,41 +23,61 @@ class EquipmentCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: Color(0xffF5F5F5),
       ),
-      child: Column(
-        children: [
-          Text(
-            equipmentName,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              equipmentName,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              Image.asset(
-                equipmentImage,
-                fit: BoxFit.cover,
-                width: 100,
+            SizedBox(height: 10),
+            Row(
+              children: [
+                Image.asset(
+                  equipmentImage,
+                  fit: BoxFit.cover,
+                  width: 100,
+                ),
+                SizedBox(width: 30),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${numberOfMins.toString()} mins of workout",
+                      style: TextStyle(
+                        color: kMainPinkColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "${numberOfBurn.toString()} of Calories burned",
+                      style: TextStyle(
+                        color: kMainPinkColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Text(
+              equipmentDiscription,
+              style: TextStyle(
+                color: kMainBlack,
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
               ),
-              SizedBox(width: 10),
-              Column(
-                children: [
-                  Text(
-                    "${numberOfMins.toString()} mins of workout",
-                    style: TextStyle(color: kMainPinkColor),
-                  ),
-                  Text(
-                    "${numberOfBurn.toString()} of Calories burned",
-                    style: TextStyle(color: kMainPinkColor),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(height: 20),
-          Text(equipmentDiscription),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

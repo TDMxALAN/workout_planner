@@ -79,9 +79,10 @@ class _EquipmentsPageState extends State<EquipmentsPage> {
               ),
               SizedBox(height: 20),
               GridView.builder(
-                shrinkWrap: false,
+                shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 8 / 5,
                   crossAxisCount: 1,
                   crossAxisSpacing: kDefaultPadding,
                   mainAxisSpacing: kDefaultPadding,
