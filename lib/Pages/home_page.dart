@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:workout_planner/Pages/exercise_details_page.dart';
 import 'package:workout_planner/constant/colors.dart';
 import 'package:workout_planner/constant/responsive.dart';
@@ -18,8 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //date and time Formatters
-  final DateFormat formatter = DateFormat('EEEE , MMMM');
-  final DateFormat dayFormat = DateFormat('dd');
+  final DateFormat formatter = DateFormat('EEEE , MMMM dd');
 
   //userdata
   final userData = user;
@@ -30,9 +30,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
-    String formattedDate = formatter.format(now);
-    String formattedDay = dayFormat.format(now);
+    // String formattedDate = formatter.format(DateTime.now());
+    String date = DateFormat('EEEE,MMMM,dd').format(DateTime.now());
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -42,25 +42,32 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "$formattedDate $formattedDay",
-                  style: TextStyle(
+                  date,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                     color: kSubTitleColor,
                   ),
                 ),
-                Text(
-                  "Hello , ${userData.fullName}",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w900,
-                    color: kMainBlack,
+                GradientText(
+                  "Hello ,${userData.fullName}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
                   ),
+                  colors: const [
+                    Colors.red,
+                    Colors.green,
+                    Colors.amber,
+                  ],
                 ),
-                SizedBox(height: 20),
-                ProgressCard(progressValue: 0.5, total: 100),
-                SizedBox(height: 20),
-                Text(
+                const SizedBox(height: 20),
+                const ProgressCard(
+                  progressValue: 0.5,
+                  total: 100,
+                ),
+                const SizedBox(height: 20),
+                const Text(
                   "Today’s Activity",
                   style: TextStyle(
                     fontSize: 22,
@@ -84,20 +91,20 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       },
-                      child: ExerciseCard(
+                      child: const ExerciseCard(
                         title: "Warm Up",
                         imageURL: "assets/images/exercises/downward-facing.png",
                         discription: "see more...",
                       ),
                     ),
-                    ExerciseCard(
+                    const ExerciseCard(
                       title: "Equipment",
                       imageURL: "assets/images/equipments/dumbbells2.png",
                       discription: "see more...",
                     ),
                   ],
                 ),
-                SizedBox(height: 13),
+                const SizedBox(height: 13),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -115,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       },
-                      child: ExerciseCard(
+                      child: const ExerciseCard(
                         title: "Exercise",
                         imageURL: "assets/images/exercises/dragging.png",
                         discription: "see more...",
@@ -135,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       },
-                      child: ExerciseCard(
+                      child: const ExerciseCard(
                         title: "Stretching",
                         imageURL: "assets/images/exercises/yoga.png",
                         discription: "see more...",
