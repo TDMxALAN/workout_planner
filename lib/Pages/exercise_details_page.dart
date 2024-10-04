@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:workout_planner/constant/colors.dart';
 import 'package:workout_planner/constant/responsive.dart';
+import 'package:workout_planner/data/user_data.dart';
 import 'package:workout_planner/models/exercise_model.dart';
 import 'package:workout_planner/widgets/exercise_card.dart';
 
@@ -24,31 +26,41 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
   //date and time Formatters
   final DateFormat formatter = DateFormat('EEEE , MMMM');
   final DateFormat dayFormat = DateFormat('dd');
+
+  //userdata
+  final userData = user;
+
   @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
-    String formattedDate = formatter.format(now);
-    String formattedDay = dayFormat.format(now);
+    String date = DateFormat('EEEE , MMMM dd').format(DateTime.now());
     return Scaffold(
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "$formattedDate $formattedDay",
-              style: TextStyle(
+            GradientText(
+              date,
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
-                color: kSubTitleColor,
               ),
+              colors: [
+                Colors.grey,
+                Colors.black,
+                Colors.lightBlue,
+              ],
             ),
-            Text(
+            GradientText(
               widget.exerciseTitle,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.w900,
-                color: kMainBlack,
+                fontWeight: FontWeight.w700,
               ),
+              colors: const [
+                Colors.red,
+                Colors.green,
+                Colors.amber,
+              ],
             ),
           ],
         ),

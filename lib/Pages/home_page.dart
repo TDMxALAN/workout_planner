@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:workout_planner/Pages/equipments_page.dart';
 import 'package:workout_planner/Pages/exercise_details_page.dart';
 import 'package:workout_planner/constant/colors.dart';
 import 'package:workout_planner/constant/responsive.dart';
@@ -41,13 +42,17 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                GradientText(
                   date,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
-                    color: kSubTitleColor,
                   ),
+                  colors: [
+                    Colors.grey,
+                    Colors.black,
+                    Colors.lightBlue,
+                  ],
                 ),
                 GradientText(
                   "Hello ,${userData.fullName}",
@@ -97,10 +102,25 @@ class _HomePageState extends State<HomePage> {
                         discription: "see more...",
                       ),
                     ),
-                    const ExerciseCard(
-                      title: "Equipment",
-                      imageURL: "assets/images/equipments/dumbbells2.png",
-                      discription: "see more...",
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EquipmentsPage(
+                              equipmentTitle: "Equipments",
+                              equipmentDescription:
+                                  "Equipments are the various tools, devices, or apparatuses used to perform specific tasks or activities. In different fields, they enable efficiency, safety, and precision, ranging from simple hand tools to complex machinery depending on the nature of the work or activity.",
+                              equipmentList: equipmentList,
+                            ),
+                          ),
+                        );
+                      },
+                      child: const ExerciseCard(
+                        title: "Equipment",
+                        imageURL: "assets/images/equipments/dumbbells2.png",
+                        discription: "see more...",
+                      ),
                     ),
                   ],
                 ),
