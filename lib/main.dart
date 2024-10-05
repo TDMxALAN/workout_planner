@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workout_planner/Pages/add_new_page.dart';
-import 'package:workout_planner/Pages/favourites_page.dart';
-import 'package:workout_planner/Pages/home_page.dart';
-import 'package:workout_planner/Pages/profile_page.dart';
+import 'package:workout_planner/Screens/add_new_page.dart';
+import 'package:workout_planner/Screens/favourites_page.dart';
+import 'package:workout_planner/Screens/home_page.dart';
+import 'package:workout_planner/Screens/profile_page.dart';
 
 void main() {
   runApp(MyApp());
