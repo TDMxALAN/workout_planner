@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gradient_animation_text/flutter_gradient_animation_text.dart';
 import 'package:workout_planner/constant/colors.dart';
 import 'package:workout_planner/constant/responsive.dart';
+import 'package:workout_planner/data/equipment_data.dart';
 import 'package:workout_planner/data/exercise_data.dart';
 import 'package:workout_planner/data/user_data.dart';
+import 'package:workout_planner/models/equipment_model.dart';
 import 'package:workout_planner/models/exercise_model.dart';
 import 'package:workout_planner/widgets/add_equipment_card.dart';
 import 'package:workout_planner/widgets/add_exercise_card.dart';
@@ -18,6 +20,7 @@ class AddNewPage extends StatefulWidget {
 class _AddNewPageState extends State<AddNewPage> {
   final userdata = user;
   final exerciseList = ExerciseData().exerciseList;
+  final equipmentList = EquipmentData().equipmentList;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,9 +59,10 @@ class _AddNewPageState extends State<AddNewPage> {
                 Text(
                   "All Exercises",
                   style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
-                      color: kMainBlack),
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    color: kMainBlack,
+                  ),
                 ),
                 SizedBox(height: 10),
 
@@ -107,6 +111,59 @@ class _AddNewPageState extends State<AddNewPage> {
                   ),
                 ),
                 SizedBox(height: 35),
+                Text(
+                  "All Equipments",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    color: kMainBlack,
+                  ),
+                ),
+                SizedBox(height: 15),
+                //list view
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: ListView.builder(
+                    itemCount: equipmentList.length,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      Equipment equipment = equipmentList[index];
+                      return AddEquipmentCard(
+                        title: equipment.equipmentName,
+                        time: equipment.numberOfMins,
+                        cal: equipment.numberOfBurn,
+                        imageURL: equipment.equipmentImage,
+                        description: equipment.equipmentDiscription,
+                        toggleAddExercise: () {
+                          setState(() {
+                            if (userdata.equipmentList.contains(equipment)) {
+                              userdata.removeEquipment(equipment);
+                              print("added");
+                            } else {
+                              userdata.addEquipment(equipment);
+                              print("removed");
+                            }
+                          });
+                        },
+                        isAdded: userdata.equipmentList.contains(equipment),
+                        toggleFavouriteExercise: () {
+                          setState(() {
+                            if (userdata.FavouriteequipmentList.contains(
+                                equipment)) {
+                              userdata.removeEquipment2(equipment);
+                              print("added");
+                            } else {
+                              userdata.addEquipment2(equipment);
+                              print("removed");
+                            }
+                          });
+                        },
+                        isFavourite:
+                            userdata.FavouriteequipmentList.contains(equipment),
+                      );
+                    },
+                  ),
+                )
               ],
             ),
           ),
