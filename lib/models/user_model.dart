@@ -8,8 +8,8 @@ class User {
   final String address;
   final int age;
   final String discription;
-  int totalExcercisesCompleted=0;
-  int totalEquipmentsHandedOvered=0;
+  int totalExcercisesCompleted = 0;
+  int totalEquipmentsHandedOvered = 0;
 
   final List<Exercise> exerciseList;
   final List<Equipment> equipmentList;
@@ -29,4 +29,26 @@ class User {
     required this.FavouriteexerciseList,
     required this.FavouriteequipmentList,
   });
+
+  //methods
+
+  //methode to add new exercise to list
+  void addExercise(Exercise exercise) {
+    exerciseList.add(exercise);
+  }
+
+  //method to remove the exercise from the exercise list
+  void removeExercise(Exercise exercise) {
+    exerciseList.remove(exercise);
+  }
+
+  //methode to add new exercise to list
+  void addExercise2(Exercise exercise) {
+    FavouriteexerciseList.add(exercise);
+  }
+
+  //method to remove the exercise from the exercise list
+  void removeExercise2(Exercise exercise) {
+    FavouriteexerciseList.remove(exercise);
+  }
 }

@@ -5,6 +5,7 @@ import 'package:workout_planner/constant/responsive.dart';
 import 'package:workout_planner/data/exercise_data.dart';
 import 'package:workout_planner/data/user_data.dart';
 import 'package:workout_planner/models/exercise_model.dart';
+import 'package:workout_planner/widgets/add_equipment_card.dart';
 import 'package:workout_planner/widgets/add_exercise_card.dart';
 
 class AddNewPage extends StatefulWidget {
@@ -73,10 +74,39 @@ class _AddNewPageState extends State<AddNewPage> {
                         exerciseTitle: exercise.exerciseName,
                         imageURL: exercise.exerciseImage,
                         numberOfMins: exercise.numberOfMins,
+                        toggleAddExercise: () {
+                          setState(() {
+                            if (userdata.exerciseList.contains(exercise)) {
+                              userdata.removeExercise(exercise);
+                              print(userdata.exerciseList.length);
+                            } else {
+                              userdata.addExercise(exercise);
+                              print(userdata.exerciseList.length);
+                            }
+                            print(userdata.exerciseList.last.exerciseName);
+                          });
+                        },
+                        isAdded: userdata.exerciseList.contains(exercise),
+                        toggleFavouriteExercise: () {
+                          setState(() {
+                            if (userdata.FavouriteexerciseList.contains(
+                                exercise)) {
+                              userdata.removeExercise2(exercise);
+                              print(userdata.FavouriteexerciseList.length);
+                            } else {
+                              userdata.addExercise2(exercise);
+                              print(userdata.FavouriteexerciseList.length);
+                            }
+                            print(userdata.exerciseList.last.exerciseName);
+                          });
+                        },
+                        isFavourite:
+                            userdata.FavouriteexerciseList.contains(exercise),
                       );
                     },
                   ),
-                )
+                ),
+                SizedBox(height: 35),
               ],
             ),
           ),

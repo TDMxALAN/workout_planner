@@ -2,62 +2,67 @@ import 'package:flutter/material.dart';
 import 'package:workout_planner/constant/colors.dart';
 import 'package:workout_planner/constant/responsive.dart';
 
-class AddExerciseCard extends StatefulWidget {
-  final String exerciseTitle;
-  final String imageURL;
-  final int numberOfMins;
-  final bool isAdded;
-  final bool isFavourite;
-  final void Function() toggleAddExercise;
-  final void Function() toggleFavouriteExercise;
-  const AddExerciseCard(
-      {super.key,
-      required this.exerciseTitle,
-      required this.imageURL,
-      required this.numberOfMins,
-      required this.toggleAddExercise,
-      required this.isAdded,
-      required this.isFavourite,
-      required this.toggleFavouriteExercise});
+class AddEquipmentCard extends StatefulWidget {
+  const AddEquipmentCard({super.key});
 
   @override
-  State<AddExerciseCard> createState() => _AddExerciseCardState();
+  State<AddEquipmentCard> createState() => _AddEquipmentCardState();
 }
 
-class _AddExerciseCardState extends State<AddExerciseCard> {
+class _AddEquipmentCardState extends State<AddEquipmentCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 15),
-      width: 200,
+      width: double.infinity,
+      height: 300,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
         color: Color(0xffF5F5F5),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(kDefaultPadding),
+        padding: const EdgeInsets.all(kDefaultPadding * 2),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.exerciseTitle,
+              "Title",
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
+                color: kMainBlack,
               ),
             ),
-            SizedBox(height: 10),
-            Image.asset(
-              widget.imageURL,
-              width: 100,
-              fit: BoxFit.cover,
-            ),
-            SizedBox(height: 10),
-            Text(
-              "${widget.numberOfMins.toString()} minutes",
-              style: TextStyle(
-                fontSize: 16,
-                color: kSubTitleColor,
-              ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                  "assets/images/equipments/skipping-rope.png",
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Description",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: kSubTitleColor,
+                      ),
+                    ),
+                    Text(
+                      "Description",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: kSubTitleColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
             SizedBox(height: 10),
             Row(
@@ -72,11 +77,9 @@ class _AddExerciseCardState extends State<AddExerciseCard> {
                   ),
                   child: Center(
                     child: IconButton(
-                      onPressed: () {
-                        widget.toggleAddExercise();
-                      },
+                      onPressed: () {},
                       icon: Icon(
-                        widget.isAdded ? Icons.remove : Icons.add,
+                        Icons.add,
                         size: 30,
                         color: kMainDarkBlue,
                       ),
@@ -92,13 +95,9 @@ class _AddExerciseCardState extends State<AddExerciseCard> {
                   ),
                   child: Center(
                     child: IconButton(
-                      onPressed: () {
-                        widget.toggleFavouriteExercise();
-                      },
+                      onPressed: () {},
                       icon: Icon(
-                        widget.isFavourite
-                            ? Icons.favorite
-                            : Icons.favorite_border,
+                        Icons.favorite_border,
                         size: 30,
                         color: kMainPinkColor,
                       ),
