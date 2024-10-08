@@ -101,7 +101,7 @@ class _AddNewPageState extends State<AddNewPage> {
                               userdata.addExercise2(exercise);
                               print(userdata.FavouriteexerciseList.length);
                             }
-                            print(userdata.exerciseList.last.exerciseName);
+                            print(userdata.exerciseList.first.exerciseName);
                           });
                         },
                         isFavourite:
